@@ -1,44 +1,56 @@
 import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 
+const room = new Map();
+room.set("E319", {
+    教室: "E319",
+    功能: "數位系統應用實驗室",
+});
+room.set("E320", {
+    教室: "E320",
+    功能: "多媒體實驗室",
+});
+room.set("E321", {
+    教室: "E321",
+    功能: "電腦網路實驗室",
+});
+room.set("E322", {
+    教室: "E322",
+    功能: "嵌入式實驗室",
+});
+
 const router = new Router();
 router
-  .get("/", (context) => {
-    context.response.body = "Hello world!";
-  })
-  .get("/nqu", (context) => {
-    context.response.body = `
+    .get("/", (context) => {
+        context.response.body = "Hello world!";
+    })
+    .get("/nqu", (context) => {
+        context.response.body = `
     <html>
         <body>
             <a href="https://www.nqu.edu.tw/">金門大學首頁</a>
         </body>
     </html>`
-  })
-  .get("/nqu/csie", (context) => {
-    context.response.body = `
+    })
+    .get("/nqu/csie", (context) => {
+        context.response.body = `
     <html>
         <body>
             <a href="https://csie.nqu.edu.tw/">金門大學資訊工程學系</a>
         </body>
     </html>`
-  })
-  .get("/to/nqu", (context) => {
-    context.response.redirect('https://www.nqu.edu.tw/')
-  })
-  .get("/to/nqu/csie", (context) => {
-    context.response.redirect('https://csie.nqu.edu.tw/')
-  })
-  .get("/room/E319", (context) => {
-    context.response.body = "E319數位系統應用實驗室";
-  })
-  .get("/room/E320", (context) => {
-    context.response.body = "E320多媒體實驗室";
-  })
-  .get("/room/E321", (context) => {
-    context.response.body = "E321電腦網路實驗室";
-  })
-  .get("/room/E322", (context) => {
-    context.response.body = "E322嵌入式實驗室";
-  });
+    })
+    .get("/to/nqu", (context) => {
+        context.response.redirect('https://www.nqu.edu.tw/')
+    })
+    .get("/to/nqu/csie", (context) => {
+        context.response.redirect('https://csie.nqu.edu.tw/')
+    })
+    .get("/room/:id", (context) => {
+        if (context.params && context.params.id && room.has(context.params.id)) {
+            context.response.body = room.get(context.params.id);
+        }
+    });
+    
 
 const app = new Application();
 app.use(router.routes());
