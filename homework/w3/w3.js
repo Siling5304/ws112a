@@ -26,21 +26,21 @@ async function add(ctx) {
 
 async function show(ctx) {
   const id = ctx.params.id;
-  const preson = people[id];
-  if (!preson) ctx.throw(404, 'invalid preson id');
-  ctx.response.body = await render.show(preson);
+  const person = people[id];
+  if (!person) ctx.throw(404, 'invalid person id');
+  ctx.response.body = await render.show(person);
 }
 
 async function create(ctx) {
   const body = ctx.request.body()
   if (body.type === "form") {
     const pairs = await body.value
-    const preson = {}
+    const person = {}
     for (const [key, value] of pairs) {
-      preson[key] = value
+      person[key] = value
     }
-    const id = people.push(preson) - 1;
-    preson.id = id;
+    const id = people.push(person) - 1;
+    person.id = id;
     ctx.response.redirect('/');
   }
 }
