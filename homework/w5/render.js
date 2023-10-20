@@ -85,7 +85,7 @@ export function layout(title, content) {
   }
   
   export function newPerson() {
-    return layout('new', `
+    return layout('新增聯絡人', `
     <h1>新聯絡人</h1>
     <p>填寫聯絡人資料</p>
     <form action="/person" method="post">

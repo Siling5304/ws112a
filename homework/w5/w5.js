@@ -10,7 +10,7 @@ const router = new Router();
 router.get('/', list)
   .get('/person/new', add)
   .get('/person/:id', show)
-  .post('/preson', create);
+  .post('/person', create);
 
 const app = new Application();
 app.use(router.routes());
