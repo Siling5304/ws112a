@@ -90,13 +90,13 @@ export function layout(title, content) {
   export function success() {
     return layout('註冊成功', `
     <h1>註冊成功!</h1>
-    你可以 <a href="/">查看所有貼文</a> / 前往<a href="/login">登入</a> 頁面 !
+    你可以 <a href="/">查看所有貼文</a> / 前往 <a href="/login">登入</a> 頁面 !
     `)
   }
   
   export function fail() {
-    return layout('註冊失敗', `
-    <h1>註冊失敗!</h1>
+    return layout('失敗', `
+    <h1>失敗!</h1>
     你可以 <a href="/">查看所有貼文</a> 或 <a href="JavaScript:window.history.back()">返回</a> !
     `)
   }
